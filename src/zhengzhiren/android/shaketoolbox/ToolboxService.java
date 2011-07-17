@@ -9,10 +9,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.os.Vibrator;
@@ -44,15 +41,6 @@ public class ToolboxService extends Service implements OnShakeListener {
 
 	private boolean mVibrateOnShake;
 
-	private BroadcastReceiver mScreenOffReceiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			mShakeDetector.stop();
-			mShakeDetector.start();
-		}
-	};
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -64,9 +52,6 @@ public class ToolboxService extends Service implements OnShakeListener {
 		if (mVibrateOnShake) {
 			mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 		}
-		// 待机时也监听传感器
-		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
-		registerReceiver(mScreenOffReceiver, filter);
 	}
 
 	/**
@@ -127,7 +112,6 @@ public class ToolboxService extends Service implements OnShakeListener {
 	public void onDestroy() {
 		mShakeDetector.stop();
 		mShakeDetector.unregisterOnShakeListener(this);
-		unregisterReceiver(mScreenOffReceiver);
 		if (mSharedPrefs.getBoolean(PREF_SHOW_ICON, true)) {
 			// 移除通知栏图标
 			this.removeNotificationIcon();

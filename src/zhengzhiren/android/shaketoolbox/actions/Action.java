@@ -29,14 +29,13 @@ public abstract class Action {
 	 */
 	public static List<Action> getAllActions(Context context) {
 		ArrayList<Action> list = new ArrayList<Action>();
-		list.add(new ActionScreenOn(context));
+		list.add(new ActionCaptureScreen(context));
 		list.add(new ActionShowAppDetails(context));
 		list.add(new ActionUninstallApp(context));
 		list.add(new ActionToggleMusic(context));
 		list.add(new ActionNextSong(context));
 		list.add(new ActionAnswerCall(context));
 		list.add(new ActionEndCall(context));
-		list.add(new ActionCaptureScreen(context));
 		// list.add(new ActionUnlockScreen(context));
 		return list;
 	}
