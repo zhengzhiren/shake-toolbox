@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:title="@string/prefs_category_general">
+		<CheckBoxPreference
+			android:key="start_on_boot"
+			android:defaultValue="false"
+			android:summary="@string/start_on_boot_summary"
+			android:title="@string/start_on_boot_title" />
+		<CheckBoxPreference
+			android:key="show_icon"
+			android:summary="@string/show_icon_summary"
+			android:title="@string/show_icon_title"
+			android:defaultValue="true" />
+		<CheckBoxPreference
+			android:key="vibrate_on_shake"
+			android:summary="@string/vibrate_on_shage_summary"
+			android:title="@string/vibrate_on_shake_title"
+			android:defaultValue="true" />
+	</PreferenceCategory>
+	<PreferenceCategory
+		android:title="@string/prefs_category_cap_screen">
+		<ListPreference
+			android:title="@string/pic_compress_format_title"
+			android:key="pic_compress_format"
+			android:entries="@array/compress_types"
+			android:entryValues="@array/compress_types"
+			android:defaultValue="PNG" />
+		<!-- <zhengzhiren.android.shaketoolbox.SeekBarPreference -->
+		<!-- android:title="@string/pic_quality_title" android:key="pic_quality"/> -->
+	</PreferenceCategory>
+<!--	<PreferenceCategory-->
+<!--		android:title="@string/prefs_category_advanced">-->
+<!--		<CheckBoxPreference-->
+<!--			android:key="hold_search"-->
+<!--			android:defaultValue="false"-->
+<!--			android:title="@string/hold_search_title"-->
+<!--			android:summary="@string/hold_search_summary" />-->
+<!--	</PreferenceCategory>-->
+</PreferenceScreen>

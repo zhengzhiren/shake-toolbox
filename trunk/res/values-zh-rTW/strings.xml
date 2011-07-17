@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string
+		name="app_name">Shake Toolbox</string>
+	<string
+		name="menu_preferences">首選項</string>
+	<string
+		name="menu_about">關於</string>
+	<string
+		name="dialog_about_title_fmt">關於%s</string>
+	<string
+		name="notification_ticker_text">Shake Toolbox服務已啟動</string>
+	<string
+		name="notification_content_text">Shake Toolbox服務已啟動！</string>
+	<string
+		name="toast_pic_saved_fmt">屏幕截圖已保存到%s</string>
+	<string
+		name="toast_start_service_failed">無法啟動服務，可能缺少加速傳感器。</string>
+	<string
+		name="toast_cant_write_sdcard">無法保存圖片，請插入SD卡。</string>
+	<string
+		name="toast_root_required">需要ROOT權限</string>
+	<string
+		name="about_author">作者：</string>
+	<string
+		name="about_version">版本：</string>
+	<string
+		name="about_website">網站：</string>
+	<string
+		name="about_description">打開需要的操作，然後退出程序，服務會在後台運行，搖晃你的手機觸發操作。當前版本最好不要同時打開多個操作。另外，如果您使用自動殺進程工具，請將本程序加入排除列表。
+	</string>
+</resources>
