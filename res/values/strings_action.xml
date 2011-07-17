@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--与操作（Action）相关的字符串 -->
+<resources>
+	<string
+		name="action_toggle_music_name">播放/暂停音乐</string>
+	<string
+		name="action_toggle_music_desc">切换系统自带音乐播放器的播放状态</string>
+	<string
+		name="action_show_app_name">显示程序信息</string>
+	<string
+		name="action_show_app_desc">显示当前程序的详细信息</string>
+	<string
+		name="action_capture_screen_name">截屏</string>
+	<string
+		name="action_capture_screen_desc">屏幕截图（需要ROOT权限）</string>
+	<string
+		name="action_uninstall_app_name">卸载程序</string>
+	<string
+		name="action_uninstall_app_desc">卸载当前应用程序</string>
+	<string
+		name="action_next_song_name">切换歌曲</string>
+	<string
+		name="action_next_song_desc">切换当前正在播放的音乐（针对系统音乐播放器）</string>
+	<string
+		name="action_answer_call_name">接听电话</string>
+	<string
+		name="action_answer_call_desc">接听呼入来电</string>
+	<string
+		name="action_end_call_name">拒接/结束通话</string>
+	<string
+		name="action_end_call_desc">拒接来电/结束通话</string>
+	<string name="action_screen_on_name">点亮屏幕</string>
+	<string name="action_screen_on_desc">点亮手机屏幕（保护电源键）</string>
+</resources>
