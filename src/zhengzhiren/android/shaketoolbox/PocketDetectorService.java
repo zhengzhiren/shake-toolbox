@@ -75,6 +75,7 @@ public class PocketDetectorService extends Service implements SensorEventListene
 	        {
 	          float[] arrayOfFloat = arg0.values;
 	          float j = arrayOfFloat[0];
+	          
 	          //filelog f=new filelog("pocketlog.txt");
 	          //Time t=new Time();
 	          //t.setToNow();
