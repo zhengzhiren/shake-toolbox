@@ -49,6 +49,8 @@
 			android:name="Preferences" />
 		<service
 			android:name="ToolboxService" />
+			<service
+			android:name=".PocketDetectorService" />
 		<receiver
 			android:name=".receivers.BootReceivers">
 			<intent-filter>

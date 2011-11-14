@@ -117,6 +117,9 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent();
 		intent.setClass(this, ToolboxService.class);
 		stopService(intent);
+		Intent intentpocket = new Intent();
+		intentpocket.setClass(this, PocketDetectorService.class);
+		stopService(intentpocket);
 	}
 
 	/**
@@ -129,6 +132,9 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent();
 			intent.setClass(this, ToolboxService.class);
 			startService(intent);
+			Intent intentpocket = new Intent();
+			intentpocket.setClass(this, PocketDetectorService.class);
+			startService(intentpocket);
 		}
 	}
 
