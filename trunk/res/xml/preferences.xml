@@ -30,6 +30,15 @@
 		<!-- <zhengzhiren.android.shaketoolbox.SeekBarPreference -->
 		<!-- android:title="@string/pic_quality_title" android:key="pic_quality"/> -->
 	</PreferenceCategory>
+	<PreferenceCategory
+		android:title="@string/prefs_category_ShakeThreshold_screen">
+		 <zhengzhiren.android.shaketoolbox.SeekBarPreference
+		 android:key="ShakeThreshold_on_shake1" 
+		 android:summary="@string/ShakeThreshold_on_shake_summary"
+		 android:title="@string/ShakeThreshold_on_shake_title"
+		 android:dialogLayout="@layout/seekbarperferences"> 
+			 </zhengzhiren.android.shaketoolbox.SeekBarPreference >
+	</PreferenceCategory>
 <!--	<PreferenceCategory-->
 <!--		android:title="@string/prefs_category_advanced">-->
 <!--		<CheckBoxPreference-->

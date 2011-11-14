@@ -32,4 +32,12 @@
 		name="pic_compress_format_title">保存格式</string>
 	<string
 		name="pic_quality_title">质量</string>
+		<string
+		name="prefs_category_ShakeThreshold_screen">摇晃强度</string>
+		<string
+		name="ShakeThreshold_on_shake_summary">调节摇晃灵敏度，值越小越灵敏，默认5</string>
+		<string
+		name="ShakeThreshold_on_shake_title">灵敏度</string>
+		<string
+		name="ShakeThreshold_on_shake_value">5</string>
 </resources>
