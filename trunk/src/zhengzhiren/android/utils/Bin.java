@@ -118,8 +118,7 @@ public class Bin {
 				iStream.close();
 
 				// 赋予可执行权限
-				String cmd = String
-						.format("/system/bin/chmod 755 %s", destFile);
+				String cmd = String.format("chmod 755 %s", destFile);
 				exec(cmd);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
