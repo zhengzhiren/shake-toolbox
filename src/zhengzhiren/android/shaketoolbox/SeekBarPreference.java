@@ -34,7 +34,7 @@ public class SeekBarPreference extends DialogPreference implements
 		// TODO Auto-generated constructor stub
 	}
 
-	public static int Getpre_ShakeThreshold_on_shake_value(int srcthreshold) {
+	public static int getpre_ShakeThreshold_on_shake_value(int srcthreshold) {
 		return (srcthreshold + 1) * 500;
 	}
 
