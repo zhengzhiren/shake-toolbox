@@ -18,6 +18,11 @@
 			android:summary="@string/vibrate_on_shage_summary"
 			android:title="@string/vibrate_on_shake_title"
 			android:defaultValue="true" />
+		<CheckBoxPreference
+			android:key="pocket_pattern"
+			android:summary="@string/pocket_pattern_summary"
+			android:title="@string/pocket_pattern_title"
+			android:defaultValue="true" />
 	</PreferenceCategory>
 	<PreferenceCategory
 		android:title="@string/prefs_category_cap_screen">
@@ -37,7 +42,7 @@
 		 android:summary="@string/ShakeThreshold_on_shake_summary"
 		 android:title="@string/ShakeThreshold_on_shake_title"
 		 android:dialogLayout="@layout/seekbarperferences"> 
-			 </zhengzhiren.android.shaketoolbox.SeekBarPreference >
+		</zhengzhiren.android.shaketoolbox.SeekBarPreference >
 	</PreferenceCategory>
 <!--	<PreferenceCategory-->
 <!--		android:title="@string/prefs_category_advanced">-->

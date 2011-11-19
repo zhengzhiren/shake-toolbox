@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -43,16 +44,23 @@ public class ToolboxService extends Service implements OnShakeListener {
 	private Vibrator mVibrator;
 
 	private boolean mVibrateOnShake;
-
 	private BroadcastReceiver mScreenOffReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			//屏幕关闭时重启传感器，不可删除
+			// 屏幕关闭时重启传感器，不可删除
 			mShakeDetector.stop();
 			mShakeDetector.start();
 		}
 	};
+	private final IBinder binder = new ToolBoxServiceBinder();
+
+	public class ToolBoxServiceBinder extends Binder {
+		ToolboxService getService() {
+			return ToolboxService.this;
+		}
+
+	}
 
 	@Override
 	public void onCreate() {
@@ -61,8 +69,11 @@ public class ToolboxService extends Service implements OnShakeListener {
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mEnabledActions = Action.getEnabledActions(this);
 		mShakeDetector = new ShakeDetector(this);
-		int threshold=this.mSharedPrefs.getInt(SeekBarPreference.pre_ShakeThreshold_on_shake_value,SeekBarPreference.defaultvalue);
-		this.mShakeDetector.setShakeThreshold(SeekBarPreference.Getpre_ShakeThreshold_on_shake_value(threshold));
+		int threshold = this.mSharedPrefs.getInt(
+				SeekBarPreference.pre_ShakeThreshold_on_shake_value,
+				SeekBarPreference.defaultvalue);
+		mShakeDetector.setShakeThreshold(SeekBarPreference
+				.Getpre_ShakeThreshold_on_shake_value(threshold));
 		mVibrateOnShake = mSharedPrefs.getBoolean(PREF_VIBRATE_ON_SHAKE, true);
 		if (mVibrateOnShake) {
 			mVibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
@@ -102,7 +113,15 @@ public class ToolboxService extends Service implements OnShakeListener {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		return null;
+		return binder;
+	}
+
+	public void StopShakeAccelerometer() {
+		mShakeDetector.stop();
+	}
+
+	public void StartShakeAccelerometer() {
+		mShakeDetector.start();
 	}
 
 	/**
