@@ -29,12 +29,16 @@
 		name="pic_compress_format_title">保存格式</string>
 	<string
 		name="pic_quality_title">質量</string>
-		<string
+	<string
 		name="prefs_category_ShakeThreshold_screen">摇晃强度</string>
-		<string
+	<string
 		name="ShakeThreshold_on_shake_summary">调节摇晃灵敏度，值越小越灵敏</string>
-		<string
+	<string
 		name="ShakeThreshold_on_shake_title">灵敏度</string>
-		<string
+	<string
 		name="ShakeThreshold_on_shake_value">5</string>
+	<string
+		name="pocket_mode_summary">手机放在口袋不会触发摇晃检测</string>
+	<string
+		name="pocket_mode_title">口袋模式</string>
 </resources>

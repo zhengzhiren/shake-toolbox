@@ -41,8 +41,8 @@
 	<string
 		name="ShakeThreshold_on_shake_value">5</string>
 	<string
-		name="pocket_pattern_summary">手机放在口袋不会触发摇晃检测</string>
+		name="pocket_mode_summary">手机放在口袋不会触发摇晃检测</string>
 	<string
-		name="pocket_pattern_title">口袋模式</string>
+		name="pocket_mode_title">口袋模式</string>
 		
 </resources>

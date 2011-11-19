@@ -20,8 +20,8 @@
 			android:defaultValue="true" />
 		<CheckBoxPreference
 			android:key="pocket_pattern"
-			android:summary="@string/pocket_pattern_summary"
-			android:title="@string/pocket_pattern_title"
+			android:summary="@string/pocket_mode_summary"
+			android:title="@string/pocket_mode_title"
 			android:defaultValue="true" />
 	</PreferenceCategory>
 	<PreferenceCategory
