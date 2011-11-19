@@ -10,9 +10,12 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+/**
+ * @author wjx
+ *
+ */
 public class SeekBarPreference extends DialogPreference implements
 		OnSeekBarChangeListener {
-
 	private SeekBar mseekBar;
 	private TextView mtextView;
 	public final static String pre_ShakeThreshold_on_shake_value = "ShakeThreshold_on_shake_value";

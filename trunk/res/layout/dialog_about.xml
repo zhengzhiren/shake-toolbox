@@ -33,7 +33,7 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="郑智仁   王景学（committer）" />
+			android:text="郑智仁   王景学" />
 	</LinearLayout>
 	<LinearLayout
 		android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
 		<TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="ZhengZhiren@gmail.com tilltheendwjx@gmail.com(committer)"
+			android:text="ZhengZhiren@gmail.com tilltheendwjx@gmail.com"
 			android:autoLink="email" />
 	</LinearLayout>
 	<LinearLayout

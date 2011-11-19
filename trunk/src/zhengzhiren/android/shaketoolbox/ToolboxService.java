@@ -51,6 +51,18 @@ public class ToolboxService extends Service implements OnShakeListener {
 			// 屏幕关闭时重启传感器，不可删除
 			mShakeDetector.stop();
 			mShakeDetector.start();
+			Intent intentpocket = new Intent();
+			intentpocket.setClass(ToolboxService.this, PocketDetectorService.class);
+			startService(intentpocket);
+		}
+	};
+	private BroadcastReceiver mScreenOnReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Intent intentpocket = new Intent();
+			intentpocket.setClass(ToolboxService.this, PocketDetectorService.class);
+			stopService(intentpocket);
 		}
 	};
 	private final IBinder binder = new ToolBoxServiceBinder();
@@ -81,6 +93,8 @@ public class ToolboxService extends Service implements OnShakeListener {
 		// 待机时也监听传感器
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		registerReceiver(mScreenOffReceiver, filter);
+		IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
+		registerReceiver(mScreenOnReceiver, filterScreenOn);
 	}
 
 	/**
@@ -150,6 +164,7 @@ public class ToolboxService extends Service implements OnShakeListener {
 		mShakeDetector.stop();
 		mShakeDetector.unregisterOnShakeListener(this);
 		unregisterReceiver(mScreenOffReceiver);
+		unregisterReceiver(mScreenOnReceiver);
 		if (mSharedPrefs.getBoolean(PREF_SHOW_ICON, true)) {
 			// 移除通知栏图标
 			this.removeNotificationIcon();
