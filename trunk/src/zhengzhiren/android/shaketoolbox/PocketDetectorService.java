@@ -2,10 +2,8 @@ package zhengzhiren.android.shaketoolbox;
 
 import java.util.List;
 
-import zhengzhiren.android.hardware.ShakeDetector;
 import zhengzhiren.android.shaketoolbox.actions.Action;
 import android.app.Service;
-import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +15,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.text.format.Time;
-import android.widget.Toast;
 
 public class PocketDetectorService extends Service implements
 		SensorEventListener {
@@ -78,9 +74,7 @@ public class PocketDetectorService extends Service implements
 		// TODO Auto-generated method stub
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		this.mIsPocket = mSharedPrefs.getBoolean(pocket_pattern, true);
-		Intent intent = new Intent(PocketDetectorService.this,
-				ToolboxService.class);
-		bindService(intent, sc, Context.BIND_AUTO_CREATE);
+		this.bindService();
 		if ((!this.mIsRegistered) || (this.mSensorMgr == null)) {
 			SensorManager localSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 			this.mSensorMgr = localSensorManager;
@@ -90,10 +84,23 @@ public class PocketDetectorService extends Service implements
 		super.onCreate();
 	}
 
+	private void bindService() {
+		Intent intent = new Intent(PocketDetectorService.this,
+				ToolboxService.class);
+		bindService(intent, sc, Context.BIND_AUTO_CREATE);
+	}
+
+	private void unBind() {
+		if (sc != null) {
+			unbindService(sc);
+		}
+	}
+
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		unregisterProximitySensor();
+		this.unBind();
 		super.onDestroy();
 	}
 
