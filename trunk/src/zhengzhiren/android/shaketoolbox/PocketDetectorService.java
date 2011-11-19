@@ -60,7 +60,6 @@ public class PocketDetectorService extends Service implements
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
 		List<Action> mEnabledActions = Action.getEnabledActions(this);
 		if (mEnabledActions.isEmpty()) {
 			stopSelf();
@@ -71,7 +70,6 @@ public class PocketDetectorService extends Service implements
 
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		this.mIsPocket = mSharedPrefs.getBoolean(pocket_pattern, true);
 		this.bindService();
@@ -79,7 +77,6 @@ public class PocketDetectorService extends Service implements
 			SensorManager localSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 			this.mSensorMgr = localSensorManager;
 			registerProximitySensor();
-			// this.mDelayedStartHandler.removeCallbacksAndMessages(null);
 		}
 		super.onCreate();
 	}
@@ -98,7 +95,6 @@ public class PocketDetectorService extends Service implements
 
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		unregisterProximitySensor();
 		this.unBind();
 		super.onDestroy();
@@ -111,11 +107,9 @@ public class PocketDetectorService extends Service implements
 	}
 
 	@Override
-	public void onSensorChanged(SensorEvent arg0) {
-		// TODO Auto-generated method stub
-
-		if (arg0.sensor.getType() == Sensor.TYPE_PROXIMITY) {
-			float[] arrayOfFloat = arg0.values;
+	public void onSensorChanged(SensorEvent event) {
+		if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+			float[] arrayOfFloat = event.values;
 			float j = arrayOfFloat[0];
 			if (this.mIsPocket) {
 				if (j == 0 || j < this.defaultdistance) {

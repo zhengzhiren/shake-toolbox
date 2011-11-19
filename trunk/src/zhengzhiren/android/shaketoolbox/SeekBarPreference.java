@@ -37,7 +37,6 @@ public class SeekBarPreference extends DialogPreference implements
 
 	@Override
 	protected void onBindDialogView(View view) {
-		// TODO Auto-generated method stub
 		super.onBindDialogView(view);
 		mSharedPrefs = this.getSharedPreferences();
 		seekvalue = mSharedPrefs.getInt(pre_ShakeThreshold_on_shake_value,
@@ -51,7 +50,6 @@ public class SeekBarPreference extends DialogPreference implements
 
 	@Override
 	protected void onDialogClosed(boolean positiveResult) {
-		// TODO Auto-generated method stub
 		if (positiveResult) {
 			SharedPreferences.Editor editor = mSharedPrefs.edit();
 			editor.putInt(pre_ShakeThreshold_on_shake_value,
