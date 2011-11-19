@@ -114,11 +114,11 @@ public class PocketDetectorService extends Service implements
 			if (this.mIsPocket) {
 				if (j == 0 || j < this.defaultdistance) {
 					if (mtoolboxservice != null) {
-						this.mtoolboxservice.StopShakeAccelerometer();
+						this.mtoolboxservice.stopShakeAccelerometer();
 					}
 				} else {
 					if (mtoolboxservice != null) {
-						this.mtoolboxservice.StartShakeAccelerometer();
+						this.mtoolboxservice.startShakeAccelerometer();
 					}
 				}
 			}

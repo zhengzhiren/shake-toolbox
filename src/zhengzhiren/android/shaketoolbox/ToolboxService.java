@@ -116,11 +116,11 @@ public class ToolboxService extends Service implements OnShakeListener {
 		return binder;
 	}
 
-	public void StopShakeAccelerometer() {
+	public void stopShakeAccelerometer() {
 		mShakeDetector.stop();
 	}
 
-	public void StartShakeAccelerometer() {
+	public void startShakeAccelerometer() {
 		mShakeDetector.start();
 	}
 
