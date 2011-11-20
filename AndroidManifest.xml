@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="zhengzhiren.android.shaketoolbox" android:versionCode="2" android:versionName="1.1.53 Beta">
+	package="zhengzhiren.android.shaketoolbox" android:versionCode="3" android:versionName="2.0">
 	<!-- 开机启动 -->
 	<uses-permission
 		android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
@@ -34,17 +34,6 @@
 					android:name="android.intent.action.MAIN" />
 			</intent-filter>
 		</activity>
-		<!-- 长按“搜索”键执行程序功能。由于此活动并不显示，所以主题设置为透明&无标题栏。 -->
-		<!-- <activity -->
-		<!-- android:name="SearchLaunchActivity" -->
-		<!-- android:theme="@android:style/Theme.Translucent.NoTitleBar"> -->
-		<!-- <intent-filter> -->
-		<!-- <action -->
-		<!-- android:name="android.intent.action.SEARCH_LONG_PRESS" /> -->
-		<!-- <category -->
-		<!-- android:name="android.intent.category.DEFAULT" /> -->
-		<!-- </intent-filter> -->
-		<!-- </activity> -->
 		<activity
 			android:name="Preferences" />
 		<service

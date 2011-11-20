@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 	/**
 	 * 保存上次运行本程序的版本号
 	 */
-	private static final String PREFS_LAST_RUN_VERSION = "last_run_version";
+	private static final String PREF_LAST_RUN_VERSION = "last_run_version";
 
 	ListView mActionsListView;
 
@@ -160,15 +160,6 @@ public class MainActivity extends Activity {
 		builder.setIcon(R.drawable.app_icon);
 		builder.setView(view);
 
-		// builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
-		// {
-		//
-		// @Override
-		// public void onClick(DialogInterface dialog, int which) {
-		// dialog.dismiss();
-		// }
-		// });
-
 		builder.create().show();
 	}
 
@@ -184,13 +175,13 @@ public class MainActivity extends Activity {
 			int versionCode = info.versionCode;
 			SharedPreferences sp = PreferenceManager
 					.getDefaultSharedPreferences(this);
-			int lastRunVersion = sp.getInt(PREFS_LAST_RUN_VERSION, 0);
+			int lastRunVersion = sp.getInt(PREF_LAST_RUN_VERSION, 0);
 			if (versionCode == lastRunVersion) { // 非首次运行
 				return false;
 			} else { // 是首次运行
 				// 将本程序的版本号保存到配置文件
 				Editor editor = sp.edit();
-				editor.putInt(PREFS_LAST_RUN_VERSION, versionCode);
+				editor.putInt(PREF_LAST_RUN_VERSION, versionCode);
 				editor.commit();
 				return true;
 			}

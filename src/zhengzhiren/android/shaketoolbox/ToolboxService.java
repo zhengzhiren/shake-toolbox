@@ -82,8 +82,8 @@ public class ToolboxService extends Service implements OnShakeListener {
 		mEnabledActions = Action.getEnabledActions(this);
 		mShakeDetector = new ShakeDetector(this);
 		int threshold = this.mSharedPrefs.getInt(
-				SeekBarPreference.pre_ShakeThreshold_on_shake_value,
-				SeekBarPreference.defaultvalue);
+				SeekBarPreference.PREF_SHAKE_SENSITIVITY,
+				SeekBarPreference.DEFAULT_VALUE);
 		mShakeDetector.setShakeThreshold(SeekBarPreference
 				.getpre_ShakeThreshold_on_shake_value(threshold));
 		mVibrateOnShake = mSharedPrefs.getBoolean(PREF_VIBRATE_ON_SHAKE, true);

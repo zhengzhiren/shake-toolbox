@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string
-		name="app_name">Shake Toolbox</string>
-	<string
-		name="menu_preferences">首选项</string>
-	<string
-		name="menu_about">关于</string>
-	<string
-		name="dialog_about_title_fmt">关于 %s</string>
-	<string
-		name="notification_ticker_text">Shake Toolbox服务已启动</string>
-	<string
-		name="notification_content_text">Shake Toolbox服务已启动！</string>
-	<string
-		name="toast_pic_saved_fmt">屏幕截图已保存到%s</string>
-	<string
-		name="toast_start_service_failed">无法启动服务，可能缺少加速传感器。</string>
-	<string
-		name="toast_cant_write_sdcard">无法保存图片，请插入SD卡。</string>
-	<string
-		name="about_author">作者：</string>
-	<string
-		name="about_version">版本：</string>
-	<string
-		name="about_website">网站：</string>
+
+    <string name="app_name">Shake Toolbox</string>
+    <string name="menu_preferences">Preferences</string>
+    <string name="menu_about">About</string>
+    <string name="dialog_about_title_fmt">About %s</string>
+
 </resources>

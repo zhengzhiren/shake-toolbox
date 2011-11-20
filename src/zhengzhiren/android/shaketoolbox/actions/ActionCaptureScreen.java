@@ -3,7 +3,8 @@ package zhengzhiren.android.shaketoolbox.actions;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import zhengzhiren.android.hardware.Framebuffer;
 import zhengzhiren.android.shaketoolbox.R;
 import zhengzhiren.android.utils.Bin;
@@ -122,13 +123,14 @@ public class ActionCaptureScreen extends Action {
 		String fmt = sp.getString(PREF_PIC_COMPRESS_FORMAT, "PNG");
 		CompressFormat format;
 		int quality = 100;
-		String picFileName;
-		if (fmt == "PNG") {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSS");
+		String picFileName = df.format(new Date());
+		if (fmt.equals("PNG")) {
 			format = CompressFormat.PNG;
-			picFileName = String.format("%s.png", System.currentTimeMillis());
+			picFileName += ".png";
 		} else {
 			format = CompressFormat.JPEG;
-			picFileName = String.format("%s.jpg", System.currentTimeMillis());
+			picFileName += ".jpg";
 		}
 
 		File pic = new File(dir, picFileName);

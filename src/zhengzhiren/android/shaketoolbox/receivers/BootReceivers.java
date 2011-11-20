@@ -15,13 +15,13 @@ import android.preference.PreferenceManager;
  */
 public class BootReceivers extends BroadcastReceiver {
 
-	private static final String PREFS_START_ON_BOOT = "start_on_boot";
+	private static final String PREF_START_ON_BOOT = "start_on_boot";
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(context);
-		boolean startOnBoot = sp.getBoolean(PREFS_START_ON_BOOT, false);
+		boolean startOnBoot = sp.getBoolean(PREF_START_ON_BOOT, false);
 		if (startOnBoot) {
 			Intent i = new Intent();
 			i.setClass(context, ToolboxService.class);
