@@ -1,44 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--首选项界面用到的字符串 -->
-<resources><!--首选项界面标题 -->
-	<string
-		name="activity_title_preferences">首選項</string><!-- 设置分类 -->
-	<string
-		name="prefs_category_general">一般設置</string>
-	<string
-		name="prefs_category_cap_screen">屏幕截圖</string>
-	<string
-		name="prefs_category_advanced">高級設置</string><!-- 设置条目 -->
-	<string
-		name="hold_search_title">長按搜索鍵觸發</string>
-	<string
-		name="hold_search_summary">長按搜索鍵觸發操作</string>
-	<string
-		name="start_on_boot_title">開機時啟動</string>
-	<string
-		name="start_on_boot_summary">手機啟動時自動運行</string>
-	<string
-		name="show_icon_title">顯示通知欄圖標</string>
-	<string
-		name="show_icon_summary">當服務啟動時，在通知欄顯示圖標</string>
-	<string
-		name="vibrate_on_shake_title">搖晃時振動</string>
-	<string
-		name="vibrate_on_shage_summary">當搖晃手機觸發操作時振動</string>
-	<string
-		name="pic_compress_format_title">保存格式</string>
-	<string
-		name="pic_quality_title">質量</string>
-	<string
-		name="prefs_category_ShakeThreshold_screen">摇晃强度</string>
-	<string
-		name="ShakeThreshold_on_shake_summary">调节摇晃灵敏度，值越小越灵敏</string>
-	<string
-		name="ShakeThreshold_on_shake_title">灵敏度</string>
-	<string
-		name="ShakeThreshold_on_shake_value">5</string>
-	<string
-		name="pocket_mode_summary">手机放在口袋不会触发摇晃检测</string>
-	<string
-		name="pocket_mode_title">口袋模式</string>
+<!-- 首选项界面用到的字符串 -->
+<resources>
+
+    <!-- 首选项界面标题 -->
+    <string name="activity_title_preferences">首選項</string>
+    <!-- 设置分类 -->
+    <string name="prefs_category_general">一般設置</string>
+    <string name="prefs_category_cap_screen">屏幕截圖</string>
+    <string name="prefs_category_advanced">高級設置</string>
+    <!-- 设置条目 -->
+    <string name="start_on_boot_title">開機時啟動</string>
+    <string name="start_on_boot_summary">手機啟動時自動運行</string>
+    <string name="show_icon_title">顯示通知欄圖標</string>
+    <string name="show_icon_summary">當服務啟動時，在通知欄顯示圖標</string>
+    <string name="vibrate_on_shake_title">搖晃時振動</string>
+    <string name="vibrate_on_shage_summary">當搖晃手機觸發操作時振動</string>
+    <string name="pic_compress_format_title">保存格式</string>
+    <string name="pic_quality_title">質量</string>
+    <string name="shake_sensitivity_summary">調節搖晃靈敏度，值越小越靈敏</string>
+    <string name="shake_sensitivity_title">搖晃靈敏度</string>
+    <string name="pocket_mode_summary">手機放在口袋中時停止搖晃檢測</string>
+    <string name="pocket_mode_title">口袋模式</string>
+
 </resources>

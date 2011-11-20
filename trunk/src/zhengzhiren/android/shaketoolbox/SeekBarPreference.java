@@ -3,7 +3,6 @@ package zhengzhiren.android.shaketoolbox;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SeekBar;
@@ -12,16 +11,15 @@ import android.widget.TextView;
 
 /**
  * @author wjx
- *
+ * 
  */
 public class SeekBarPreference extends DialogPreference implements
 		OnSeekBarChangeListener {
-	private SeekBar mseekBar;
-	private TextView mtextView;
-	public final static String pre_ShakeThreshold_on_shake_value = "ShakeThreshold_on_shake_value";
-	public final static int defaultvalue = 5;
-	public final static int maxvalue = 10;
-	private int seekvalue;
+	private SeekBar mSeekBar;
+	private TextView mTextView;
+	public final static String PREF_SHAKE_SENSITIVITY = "shake_sensitivity";
+	public final static int DEFAULT_VALUE = 5;
+	public final static int MAX_VALUE = 10;
 	private SharedPreferences mSharedPrefs;
 
 	public SeekBarPreference(Context context, AttributeSet attrs, int defStyle) {
@@ -42,30 +40,29 @@ public class SeekBarPreference extends DialogPreference implements
 	protected void onBindDialogView(View view) {
 		super.onBindDialogView(view);
 		mSharedPrefs = this.getSharedPreferences();
-		seekvalue = mSharedPrefs.getInt(pre_ShakeThreshold_on_shake_value,
-				defaultvalue);
-		mseekBar = (SeekBar) view.findViewById(R.id.seekBar);
-		mtextView = (TextView) view.findViewById(R.id.textView);
-		mseekBar.setOnSeekBarChangeListener(this);
-		this.mseekBar.setProgress(this.seekvalue);
-		mtextView.setText(seekvalue + "/" + mseekBar.getMax());
+		int seekvalue = mSharedPrefs.getInt(PREF_SHAKE_SENSITIVITY,
+				DEFAULT_VALUE);
+		mSeekBar = (SeekBar) view.findViewById(R.id.seekBar);
+		mTextView = (TextView) view.findViewById(R.id.textView);
+		mSeekBar.setOnSeekBarChangeListener(this);
+		mSeekBar.setProgress(seekvalue);
+		mTextView.setText(seekvalue + "/" + mSeekBar.getMax());
 	}
 
 	@Override
 	protected void onDialogClosed(boolean positiveResult) {
 		if (positiveResult) {
 			SharedPreferences.Editor editor = mSharedPrefs.edit();
-			editor.putInt(pre_ShakeThreshold_on_shake_value,
-					mseekBar.getProgress());
+			editor.putInt(PREF_SHAKE_SENSITIVITY,
+					mSeekBar.getProgress());
 			editor.commit();
-		} else {
 		}
 	}
 
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		mtextView.setText(progress + "/" + seekBar.getMax());
+		mTextView.setText(progress + "/" + seekBar.getMax());
 	}
 
 	@Override

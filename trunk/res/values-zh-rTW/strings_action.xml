@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--与操作（Action）相关的字符串 -->
+<!-- 与操作（Action）相关的字符串 -->
 <resources>
-	<string
-		name="action_toggle_music_name">播放/暫停音樂</string>
-	<string
-		name="action_toggle_music_desc">切換系統自帶音樂播放器的播放狀態</string>
-	<string
-		name="action_show_app_name">顯示程序信息</string>
-	<string
-		name="action_show_app_desc">顯示當前程序的詳細信息</string>
-	<string
-		name="action_capture_screen_name">截屏</string>
-	<string
-		name="action_capture_screen_desc">屏幕截圖（需要ROOT權限）</string>
-	<string
-		name="action_uninstall_app_name">卸載程序</string>
-	<string
-		name="action_uninstall_app_desc">卸載當前應用程序</string>
-	<string
-		name="action_next_song_name">切換歌曲</string>
-	<string
-		name="action_next_song_desc">切換當前正在播放的音樂（針對系統音樂播放器）</string>
-	<string
-		name="action_answer_call_name">接聽電話</string>
-	<string
-		name="action_answer_call_desc">接聽呼入來電</string>
-	<string
-		name="action_end_call_name">拒接/結束通話</string>
-	<string
-		name="action_end_call_desc">拒接來電/結束通話</string>
+
+    <string name="action_toggle_music_name">播放/暫停音樂</string>
+    <string name="action_toggle_music_desc">切換系統自帶音樂播放器的播放狀態</string>
+    <string name="action_show_app_name">顯示程序信息</string>
+    <string name="action_show_app_desc">顯示當前程序的詳細信息</string>
+    <string name="action_capture_screen_name">截屏</string>
+    <string name="action_capture_screen_desc">屏幕截圖（需要ROOT權限）</string>
+    <string name="action_uninstall_app_name">卸載程序</string>
+    <string name="action_uninstall_app_desc">卸載當前應用程序</string>
+    <string name="action_next_song_name">切換歌曲</string>
+    <string name="action_next_song_desc">切換當前正在播放的音樂（針對系統音樂播放器）</string>
+    <string name="action_answer_call_name">接聽電話</string>
+    <string name="action_answer_call_desc">接聽呼入來電</string>
+    <string name="action_end_call_name">拒接/結束通話</string>
+    <string name="action_end_call_desc">拒接來電/結束通話</string>
+    <string name="action_screen_on_name">點亮屏幕</string>
+    <string name="action_screen_on_desc">點亮手機屏幕（保護電源鍵）</string>
+
 </resources>
