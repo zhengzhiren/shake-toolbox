@@ -31,6 +31,20 @@
 		<!-- android:title="@string/pic_quality_title" android:key="pic_quality"/> -->
 	</PreferenceCategory>
 	<PreferenceCategory
+		android:title="@string/prefs_start_app">
+		<Preference
+		    android:key="start_app"
+			android:summary="@string/start_app_summary"
+			android:dialogLayout="@layout/start_app_preferences"
+			android:title="@string/start_app_title" />
+<!-- 		<zhengzhiren.android.shaketoolbox.StartAppPreference -->
+<!-- 			android:key="start_app" -->
+<!-- 			android:summary="@string/start_app_summary" -->
+<!-- 			android:dialogLayout="@layout/start_app_preferences" -->
+<!-- 			android:title="@string/start_app_title" > -->
+<!-- 		</zhengzhiren.android.shaketoolbox.StartAppPreference> -->
+	</PreferenceCategory>
+	<PreferenceCategory
 		android:title="@string/prefs_category_advanced">
 		<zhengzhiren.android.shaketoolbox.SeekBarPreference
 			android:key="shake_sensitivity"
@@ -42,6 +56,11 @@
 			android:key="pocket_mode"
 			android:summary="@string/pocket_mode_summary"
 			android:title="@string/pocket_mode_title"
+			android:defaultValue="true" />
+		<CheckBoxPreference
+			android:key="priority_mode"
+			android:summary="@string/priority_mode_summary"
+			android:title="@string/priority_mode_title"
 			android:defaultValue="true" />
 	</PreferenceCategory>
 </PreferenceScreen>
