@@ -18,5 +18,7 @@
     <string name="action_end_call_desc">拒接来电/结束通话</string>
     <string name="action_screen_on_name">点亮屏幕</string>
     <string name="action_screen_on_desc">点亮手机屏幕（保护电源键）</string>
+    <string name="action_start_app_name">启动应用程序</string>
+    <string name="action_start_app_desc">启动特定的应用程序</string>
 
 </resources>
