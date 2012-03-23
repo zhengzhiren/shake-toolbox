@@ -37,6 +37,7 @@ public abstract class Action {
 		list.add(new ActionAnswerCall(context));
 		list.add(new ActionEndCall(context));
 		list.add(new ActionCaptureScreen(context));
+		list.add(new ActionStartApp(context));
 		// list.add(new ActionUnlockScreen(context));
 		return list;
 	}
