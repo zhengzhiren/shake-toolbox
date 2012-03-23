@@ -35,6 +35,8 @@
 			</intent-filter>
 		</activity>
 		<activity
+			android:name="StartAppPreference"/>
+		<activity
 			android:name="Preferences" />
 		<service
 			android:name="ToolboxService" />
