@@ -7,4 +7,7 @@
 	<item
 		android:title="@string/menu_about" android:id="@+id/menu_about">
 	</item>
+	<item
+		android:title="@string/menu_exit" android:id="@+id/menu_exit">
+	</item>
 </menu>
