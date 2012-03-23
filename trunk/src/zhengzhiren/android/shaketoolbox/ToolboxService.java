@@ -26,7 +26,7 @@ public class ToolboxService extends Service implements OnShakeListener {
 	 * 服务运行时显示图标
 	 */
 	private static final String PREF_SHOW_ICON = "show_icon";
-
+	private static final String PREF_PRIORITY_MODE="priority_mode";
 	/**
 	 * 振动时间（毫秒）
 	 */
@@ -36,6 +36,7 @@ public class ToolboxService extends Service implements OnShakeListener {
 	 * 摇晃时振动
 	 */
 	private static final String PREF_VIBRATE_ON_SHAKE = "vibrate_on_shake";
+	private static final String PREF_POCKET_MODE = "pocket_mode";
 	private static final int NOTIFICATION_ID = 0;
 
 	private SharedPreferences mSharedPrefs;
@@ -51,18 +52,16 @@ public class ToolboxService extends Service implements OnShakeListener {
 			// 屏幕关闭时重启传感器，不可删除
 			mShakeDetector.stop();
 			mShakeDetector.start();
-			Intent intentpocket = new Intent();
-			intentpocket.setClass(ToolboxService.this, PocketDetectorService.class);
-			startService(intentpocket);
+			// 启动口袋检测服务
+			invokePocketDetectorService(true);
 		}
 	};
 	private BroadcastReceiver mScreenOnReceiver = new BroadcastReceiver() {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			Intent intentpocket = new Intent();
-			intentpocket.setClass(ToolboxService.this, PocketDetectorService.class);
-			stopService(intentpocket);
+			// 停止口袋检测服务
+			invokePocketDetectorService(false);
 		}
 	};
 	private final IBinder binder = new ToolBoxServiceBinder();
@@ -74,10 +73,48 @@ public class ToolboxService extends Service implements OnShakeListener {
 
 	}
 
+	/**
+	 * 操作口袋检测服务。参数true-启动，false-停止
+	 */
+	private void invokePocketDetectorService(boolean startOrStop) {
+		if (getPocketMode()) {
+			if (startOrStop) {
+				Intent intentpocket = new Intent();
+				intentpocket.setClass(ToolboxService.this,
+						PocketDetectorService.class);
+				startService(intentpocket);
+			} else {
+				Intent intentpocket = new Intent();
+				intentpocket.setClass(ToolboxService.this,
+						PocketDetectorService.class);
+				stopService(intentpocket);
+			}
+		}
+	}
+
+	/**
+	 * 获取口袋模式
+	 */
+	private boolean getPocketMode() {
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		return sp.getBoolean(PREF_POCKET_MODE, false);
+	}
+	/**
+	 * 获取口袋模式
+	 */
+	private boolean getPriorityMode() {
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		return sp.getBoolean(PREF_PRIORITY_MODE, false);
+	}
 	@Override
 	public void onCreate() {
 		super.onCreate();
-
+		if(getPriorityMode())
+		{
+			this.setForeground(true);
+		}
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mEnabledActions = Action.getEnabledActions(this);
 		mShakeDetector = new ShakeDetector(this);

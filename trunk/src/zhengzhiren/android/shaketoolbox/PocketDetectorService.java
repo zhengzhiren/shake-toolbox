@@ -18,7 +18,7 @@ import android.preference.PreferenceManager;
 
 /**
  * @author wjx
- *
+ * 
  */
 public class PocketDetectorService extends Service implements
 		SensorEventListener {
@@ -61,6 +61,7 @@ public class PocketDetectorService extends Service implements
 		this.mSensorMgr.unregisterListener(this);
 		this.mIsRegistered = false;
 	}
+
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		List<Action> mEnabledActions = Action.getEnabledActions(this);
@@ -70,7 +71,7 @@ public class PocketDetectorService extends Service implements
 		}
 		return START_STICKY;
 	}
-	
+
 	@Override
 	public void onCreate() {
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);

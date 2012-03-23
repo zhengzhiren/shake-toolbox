@@ -37,6 +37,8 @@ public class MainActivity extends Activity {
 	 * 保存上次运行本程序的版本号
 	 */
 	private static final String PREF_LAST_RUN_VERSION = "last_run_version";
+	
+	private boolean mIsExit = false;
 
 	ListView mActionsListView;
 
@@ -76,6 +78,7 @@ public class MainActivity extends Activity {
 			// 释放截图所需的bin文件
 			ActionCaptureScreen.releaseBin(this);
 		}
+		mIsExit = false;
 	}
 
 	/**
@@ -103,9 +106,23 @@ public class MainActivity extends Activity {
 		case R.id.menu_about:
 			showAboutDialog();
 			break;
+		case R.id.menu_exit:
+			mIsExit = true;
+			finish();
+			break;
 		}
-
 		return super.onOptionsItemSelected(item);
+	}
+
+	/**
+	 * 退出时判断是否启动服务
+	 */
+	private void exit() {
+		if (mIsExit == false) {
+			Intent intent = new Intent();
+			intent.setClass(this, ToolboxService.class);
+			startService(intent);
+		}
 	}
 
 	/**
@@ -127,9 +144,7 @@ public class MainActivity extends Activity {
 	protected void onPause() {
 		super.onPause();
 		if (isFinishing()) {
-			Intent intent = new Intent();
-			intent.setClass(this, ToolboxService.class);
-			startService(intent);
+			exit();
 		}
 	}
 

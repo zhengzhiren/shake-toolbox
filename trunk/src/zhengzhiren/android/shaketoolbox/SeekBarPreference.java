@@ -53,8 +53,7 @@ public class SeekBarPreference extends DialogPreference implements
 	protected void onDialogClosed(boolean positiveResult) {
 		if (positiveResult) {
 			SharedPreferences.Editor editor = mSharedPrefs.edit();
-			editor.putInt(PREF_SHAKE_SENSITIVITY,
-					mSeekBar.getProgress());
+			editor.putInt(PREF_SHAKE_SENSITIVITY, mSeekBar.getProgress());
 			editor.commit();
 		}
 	}
