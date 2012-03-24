@@ -38,7 +38,7 @@ public class ToolboxService extends Service implements OnShakeListener {
 	 */
 	private static final String PREF_VIBRATE_ON_SHAKE = "vibrate_on_shake";
 	private static final String PREF_POCKET_MODE = "pocket_mode";
-	private static final int NOTIFICATION_ID = 0;
+	private static final int NOTIFICATION_ID = 1;
 
 	private SharedPreferences mSharedPrefs;
 	private List<Action> mEnabledActions;
