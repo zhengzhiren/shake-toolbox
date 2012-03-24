@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
@@ -26,7 +27,7 @@ public class ToolboxService extends Service implements OnShakeListener {
 	 * 服务运行时显示图标
 	 */
 	private static final String PREF_SHOW_ICON = "show_icon";
-	private static final String PREF_PRIORITY_MODE="priority_mode";
+	private static final String PREF_PRIORITY_MODE = "priority_mode";
 	/**
 	 * 振动时间（毫秒）
 	 */
@@ -100,21 +101,28 @@ public class ToolboxService extends Service implements OnShakeListener {
 				.getDefaultSharedPreferences(this);
 		return sp.getBoolean(PREF_POCKET_MODE, false);
 	}
+
 	/**
-	 * 获取口袋模式
+	 * 是否提高优先级
 	 */
 	private boolean getPriorityMode() {
 		SharedPreferences sp = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		return sp.getBoolean(PREF_PRIORITY_MODE, false);
 	}
+
+	/**
+	 * 是否显示通知图标
+	 */
+	private boolean showNotificationIcon() {
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		return sp.getBoolean(PREF_SHOW_ICON, true);
+	}
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		if(getPriorityMode())
-		{
-			this.setForeground(true);
-		}
 		mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		mEnabledActions = Action.getEnabledActions(this);
 		mShakeDetector = new ShakeDetector(this);
@@ -149,9 +157,14 @@ public class ToolboxService extends Service implements OnShakeListener {
 		try {
 			// 启动摇晃检测
 			mShakeDetector.start();
-			if (mSharedPrefs.getBoolean(PREF_SHOW_ICON, true)) {
+			if (getPriorityMode()) {
+				startForeground(NOTIFICATION_ID, getNotification());
+			} else if (showNotificationIcon()) {
 				// 在通知栏显示图标
-				this.showNotificationIcon();
+				NotificationManager nm = (NotificationManager) this
+						.getSystemService(NOTIFICATION_SERVICE);
+				Notification notification = getNotification();
+				nm.notify(NOTIFICATION_ID, notification);
 			}
 		} catch (UnsupportedOperationException e) {
 			// 启动服务失败，提示用户
@@ -202,38 +215,53 @@ public class ToolboxService extends Service implements OnShakeListener {
 		mShakeDetector.unregisterOnShakeListener(this);
 		unregisterReceiver(mScreenOffReceiver);
 		unregisterReceiver(mScreenOnReceiver);
-		if (mSharedPrefs.getBoolean(PREF_SHOW_ICON, true)) {
+		if (showNotificationIcon()) {
 			// 移除通知栏图标
 			this.removeNotificationIcon();
 		}
 	}
 
 	/**
-	 * 添加通知栏图标
+	 * 获取通知栏图标
 	 */
-	private void showNotificationIcon() {
-		NotificationManager nm = (NotificationManager) this
-				.getSystemService(NOTIFICATION_SERVICE);
+	private Notification getNotification() {
+		if (Build.VERSION.SDK_INT >= 11) {
+			Notification.Builder builder = new Notification.Builder(this);
+			builder.setTicker(this.getResources().getText(
+					R.string.notification_ticker_text));
+			builder.setContentTitle(this.getResources().getText(
+					R.string.app_name));
+			builder.setContentText(this.getResources().getText(
+					R.string.notification_content_text));
+			Intent notificationIntent = new Intent(this, MainActivity.class);
+			PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+					notificationIntent, 0);
+			builder.setContentIntent(pendingIntent);
+			builder.setSmallIcon(R.drawable.app_icon);
+			builder.setOngoing(true);
 
-		CharSequence tickerText = this.getResources().getText(
-				R.string.notification_ticker_text);
-		CharSequence contentTitle = this.getResources().getText(
-				R.string.app_name);
-		CharSequence contentText = this.getResources().getText(
-				R.string.notification_content_text);
+			return builder.getNotification();
+		} else {
+			CharSequence tickerText = this.getResources().getText(
+					R.string.notification_ticker_text);
+			CharSequence contentTitle = this.getResources().getText(
+					R.string.app_name);
+			CharSequence contentText = this.getResources().getText(
+					R.string.notification_content_text);
 
-		Intent notificationIntent = new Intent(this, MainActivity.class);
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-				notificationIntent, 0);
+			Intent notificationIntent = new Intent(this, MainActivity.class);
+			PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+					notificationIntent, 0);
 
-		Notification notification = new Notification();
-		notification.flags = Notification.FLAG_ONGOING_EVENT;
-		notification.icon = R.drawable.app_icon;
-		notification.tickerText = tickerText;
-		notification.setLatestEventInfo(this, contentTitle, contentText,
-				pendingIntent);
+			Notification notification = new Notification();
+			notification.flags = Notification.FLAG_ONGOING_EVENT;
+			notification.icon = R.drawable.app_icon;
+			notification.tickerText = tickerText;
+			notification.setLatestEventInfo(this, contentTitle, contentText,
+					pendingIntent);
+			return notification;
+		}
 
-		nm.notify(NOTIFICATION_ID, notification);
 	}
 
 	/**
