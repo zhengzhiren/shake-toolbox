@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceActivity;
@@ -43,17 +44,27 @@ public class StartAppPreference extends PreferenceActivity {
 	public StartAppPreference() {
 
 	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.start_app_preferences);
-		PackagesInfo pi = new PackagesInfo(this);
-		mListPrograme = pi.getProgrameList();
 		mListView = (ListView) findViewById(android.R.id.list);
+		getAppList();
 		mAppListAdapter = new AppListAdapter(mListPrograme, this);
-		mAppListAdapter.setCurSelectPosition(pi.getPos(getApp()));
+		mAppListAdapter.setCurSelectPosition(getPos(getApp()));
 		mListView.setAdapter(mAppListAdapter);
+		
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 			/**update list UI when item on click*/  
 	        class UpdateListStaus implements Runnable{  
@@ -101,7 +112,6 @@ public class StartAppPreference extends PreferenceActivity {
 				finish();
 			}
 		});
-		
 	}
 	private String getApp()
 	{
@@ -202,72 +212,38 @@ public class StartAppPreference extends PreferenceActivity {
 		ImageView imgage;
 		TextView text;
 	}
-
-	public class PackagesInfo {
-		private List<ApplicationInfo> appList;
-		private PackageManager pm;
-
-		public PackagesInfo(Context context) {
-			// 通包管理器，检索所有的应用程序（甚至卸载的）与数据目录
-			pm = context.getApplicationContext().getPackageManager();
-			appList = pm
-					.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+	private void getAppList()
+	{
+		PackageManager pm;
+		pm = getPackageManager();
+		List<ApplicationInfo> appList = pm.getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+		mListPrograme= new ArrayList<Programe>();
+		for (ApplicationInfo app : appList) {
+			// 这里主要是过滤系统的应用和电话应用，当然你也可以把它注释掉。
+			if (app.processName.equals("system")
+					|| (app == null)) {
+				continue;
+			}
+			Programe pr = new Programe();
+			pr.setIcon(app.loadIcon(pm));
+			pr.setName(app.loadLabel(pm).toString());
+			pr.setPackgeName(app.packageName.toString());
+			mListPrograme.add(pr);
 		}
-		public List<Programe> getProgrameList() {
-			List<Programe> list = new ArrayList<Programe>();
-
-			for (ApplicationInfo app : appList) {
-				// 这里主要是过滤系统的应用和电话应用，当然你也可以把它注释掉。
-				if (app.processName.equals("system")
-						|| (getInfo(app.processName) == null)) {
-					continue;
-				}
-				Programe pr = new Programe();
-				pr.setIcon(getInfo(app.processName).loadIcon(pm));
-				pr.setName(getInfo(app.processName).loadLabel(pm).toString());
-				pr.setPackgeName(app.packageName.toString());
-				list.add(pr);
-			}
-			return list;
-		}
-		/**
-		 * 通过一个程序名返回该程序的一个Application对象。
-		 * 
-		 * @param name
-		 *            程序名
-		 * @return ApplicationInfo
-		 */
-		public ApplicationInfo getInfo(String name) {
-			if (name == null) {
-				return null;
-			}
-			for (ApplicationInfo appinfo : appList) {
-				if (name.equals(appinfo.processName)) {
-					return appinfo;
-				}
-			}
-			return null;
-		}
-		public int getPos(String packname) {
-			if (packname == null||packname.isEmpty()) {
-				return -1;
-			}
-			int i=0;
-			for (ApplicationInfo appinfo : appList) {
-				if (appinfo.processName.equals("system")
-						|| (getInfo(appinfo.processName) == null)) {
-					continue;
-				}
-				if (packname.equals(appinfo.packageName)) {
-					return i;
-				}
-				i++;
-			}
+	}
+	public int getPos(String packname) {
+		if (packname == null||packname.isEmpty()) {
 			return -1;
 		}
-
+		int i=0;
+		for (Programe appinfo : mListPrograme) {
+			if (packname.equals(appinfo.packname)) {
+				return i;
+			}
+			i++;
+		}
+		return -1;
 	}
-
 	public class Programe {
 		// 图标
 		private Drawable icon;
