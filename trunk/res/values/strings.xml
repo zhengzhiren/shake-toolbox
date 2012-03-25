@@ -15,10 +15,10 @@
     <string name="about_author">作者：</string>
     <string name="about_version">版本：</string>
     <string name="about_website">网站：</string>
-    <string name="about_description">打开需要的操作，然后退出程序，服务会在后台运行，摇晃你的手机触发操作。当前版本最好不要同时打开多个操作。另外，如果您使用自动杀进程工具，请将本程序加入排除列表。
-	</string>
-	<string name="start_app_cancel">取消</string>
-	<string name="start_app_ok">选择</string>
-	<string name="content_des"></string>
+    <string name="about_issue">问题反馈：</string>
+    <string name="about_description">打开需要的操作，然后退出程序，服务会在后台运行，摇晃你的手机触发操作。当前版本最好不要同时打开多个操作。另外，如果您使用自动杀进程工具，请将本程序加入排除列表。</string>
+    <string name="start_app_cancel">取消</string>
+    <string name="start_app_ok">选择</string>
+    <string name="content_des"></string>
 
 </resources>
