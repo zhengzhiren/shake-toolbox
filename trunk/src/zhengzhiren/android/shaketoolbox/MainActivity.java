@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	/**
-	 * 分享到
+	 * 分享到社交网络
 	 */
     private void share()
     {
