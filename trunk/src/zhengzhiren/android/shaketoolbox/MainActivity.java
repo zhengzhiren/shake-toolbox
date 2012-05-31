@@ -110,10 +110,24 @@ public class MainActivity extends Activity {
 			mIsExit = true;
 			finish();
 			break;
+		case R.id.menu_share:
+			share();
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	/**
+	 * 分享到
+	 */
+    private void share()
+    {
+    	Intent intent=new Intent(Intent.ACTION_SEND);   
+    	intent.setType("text/plain");   
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");   
+        intent.putExtra(Intent.EXTRA_TEXT, "推荐你使用软件Shake Toolbox，作品官网：http://code.google.com/p/shake-toolbox/");    
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);   
+        startActivity(Intent.createChooser(intent, getTitle())); 
+    }
 	/**
 	 * 退出时判断是否启动服务
 	 */

@@ -4,6 +4,7 @@
     <string name="app_name">摇晃工具箱</string>
     <string name="menu_preferences">首选项</string>
     <string name="menu_about">关于</string>
+    <string name="menu_share">分享</string>
     <string name="menu_exit">退出</string>
     <string name="dialog_about_title_fmt">关于 %s</string>
     <string name="notification_ticker_text">Shake Toolbox服务已启动</string>
